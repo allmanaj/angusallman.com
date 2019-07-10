@@ -8,6 +8,9 @@ module.exports = {
         '10': '0.1',
         '90': '0.9',
       },
+      colors:{
+        terminal: '#3cdf2b'
+      },
     },
   },
   variants: {
