@@ -6,13 +6,12 @@
     <p class="text-left ml-3 py-0 leading-tight">Boot complete!</p>
     <p class="text-left ml-3 py-0 leading-tight">------------------------------------------------------------------------------------</p>
     <div v-for="(line, index) in history" :key="`command${index}`">
-      <p class="text-left ml-3 py-0 leading-tight" >root@angusallman.com $ {{ line.command }}</p>
-      <p class="text-left ml-3 py-0 leading-tight" v-h>root@angusallman.com $ <span v-html="line.response"></span></p>
+      <p class="text-left ml-3 py-0 leading-tight my-1" >root@angusallman.com $ {{ line.command }}</p>
+      <p class="text-left ml-3 py-0 leading-tight my-1 response"><span v-html="line.response"></span></p>
     </div>
     <form method="POST" @submit.prevent="submitCommand">
       <span class="float-left ml-3">root@angusallman.com $ </span>
       <input
-        type="text"
         class="border-none bg-black text-terminal text-left float-left outline-none ml-3 terminal-input"
         autofocus
         ref="input"
@@ -59,4 +58,8 @@ export default {
     font-family: "PT Mono", sans-serif;
   }
 
+  .response .long-text{
+    max-width: 500px;
+    display:block;
+  }
 </style>

@@ -1,4 +1,3 @@
-import TestCommand from './commands/TestCommand';
 import { runInThisContext } from 'vm';
 
 export default class CommandRouter{
@@ -12,7 +11,7 @@ export default class CommandRouter{
 
     run(command){
         if(command in this.commands){
-            return this.commands[command]();
+            return this.commands[command].action(this);
         } else {
             return `command '${command}' not found`;
         }
@@ -26,8 +25,10 @@ export default class CommandRouter{
                 const fileName = key.split("/").pop().split(".")[0];
                 import(`./commands/${fileName}`).then(module => {
                     let {default: cmdFile} = module;
-                    this.commands[cmdFile.command] = cmdFile.action
+                    this.commands[cmdFile.command] = cmdFile
                 });
             });
     }
+
+  
 }
