@@ -5,6 +5,7 @@
     <p class="text-left ml-3 py-0 leading-tight">Optimizing commands</p>
     <p class="text-left ml-3 py-0 leading-tight">Boot complete!</p>
     <p class="text-left ml-3 py-0 leading-tight">------------------------------------------------------------------------------------</p>
+    <p class="text-left ml-3 py-0 leading-tight">Please use the 'help' command to learn more</p>
     <div v-for="(line, index) in history" :key="`command${index}`">
       <p class="text-left ml-3 py-0 leading-tight my-1" >root@angusallman.com $ {{ line.command }}</p>
       <p class="text-left ml-3 py-0 leading-tight my-1 response"><span v-html="line.response"></span></p>
