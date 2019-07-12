@@ -6,7 +6,7 @@ export default class Help {
 
     static action = (router) => {
         
-        return Object.keys(router.commands).map(key => {
+        return Object.keys(router.commands).sort().map(key => {
             return `<br>${router.commands[key].command}  ----  ${router.commands[key].description}`
         }).join('') + '<br><br>';
     }

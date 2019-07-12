@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-black text-terminal h-screen terminal">
+  <div class="bg-black text-terminal h-screen terminal fixed overflow-scroll w-screen" ref="container">
     <p class="text-left ml-3 pt-3 py-0">Booted angusallman.com</p>
     <p class="text-left ml-3 py-0 leading-tight">Retrieving portfolio</p>
     <p class="text-left ml-3 py-0 leading-tight">Optimizing commands</p>
@@ -16,6 +16,7 @@
         autofocus
         ref="input"
         @change="updateCaret"
+        @blur="refocus"
         v-model="command"
         />
     </form>
@@ -25,6 +26,7 @@
 <script>
 
 import CommandRouter from '../classes/CommandRouter'
+import { nextTick } from 'q';
 
 const cmdRouter = new CommandRouter;
 
@@ -37,10 +39,13 @@ export default {
     };
   },
   mounted: function(){
-    this.$refs.input.focus();
+    this.refocus();
   },
   methods: {
     updateCaret: function(e){
+    },
+    refocus: function(e){
+      this.$refs.input.focus();
     },
     submitCommand: function(e){
       this.history.push({
@@ -48,6 +53,9 @@ export default {
         'response' : cmdRouter.run(this.command)
       })
       this.command = "";
+      nextTick(() => {
+        this.$refs.container.scrollTop = this.$refs.container.scrollHeight;
+      })
     }
   },
 };
@@ -56,6 +64,11 @@ export default {
 <style>
   .terminal{
     font-family: "PT Mono", sans-serif;
+    
+  }
+
+  .terminal::-webkit-scrollbar { 
+    display: none; 
   }
 
   .response .long-text{

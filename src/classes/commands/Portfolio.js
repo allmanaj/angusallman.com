@@ -11,9 +11,10 @@ export default class Portfolio {
             'project:pyhost',
             'project:ven',
         ];
-        let output = "Please type one of the following commands for more information:<br>";
+        let output = "<br>Please type one of the following commands for more information:<br>";
         output += "--------------------------------------------<br>";
         output += Utils.arrayToLinks(projects).join('<br>');
+        output += '<br>';
         return output;
     }
 

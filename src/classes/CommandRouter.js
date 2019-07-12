@@ -20,6 +20,7 @@ export default class CommandRouter{
 
     registerCommands = async () => {
         const files = require.context("./commands", true, /\.js$/i);
+        console.log(files.keys);
         files.keys()
             .map(async key => {
                 const fileName = key.split("/").pop().split(".")[0];
